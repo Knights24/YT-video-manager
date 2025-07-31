@@ -5,14 +5,28 @@ def load_data():
     try:
         with open('youtube.txt', 'r') as file:
             return json.load(file)
+        
     except FileNotFoundError:
         return []
-
+    
+def save_data_helper(videos):
+    with open('youtube.txt', 'w') as file:
+        json.dump(videos, file)
+ 
 def list_all_videos(videos):
-    pass
+    print("\n")
+    print("*" * 50)
+    for index, video in enumerate(videos, start=1):
+        print (f"{index}. {video['name']}, Duration: {video['time']}")
+    print("\n")
+    print("*" * 50)
 
 def add_videos(videos):
-    pass
+    name = input("Enter video name : ")
+    time = input("Enter video time : ")
+    videos.append({'name': name , 'time': time})
+    save_data_helper(videos)
+    
 
 def delete_videos(videos):
     pass
@@ -31,7 +45,8 @@ def main():
         print("3. Delete a youtube video")
         print("4. Update a youtube video")
         print("5. Exit the app")
-        choice =input("Enter your choice")
+        choice =input("Enter your choice : ")
+        # print(videos)
 
         match choice:
             case "1":

@@ -4,24 +4,30 @@ conn = sqlite3.connect('youtube_manager.db')
 cursor = conn.cursor()
 
 cursor.execute('''
-    CREATE TABLE IF NOT EXIST videos(
-               id INTEGER PRIMARY KEY,
-               name TEXT NOT NULL,
-               time TEXT NOT NULL
+    CREATE TABLE IF NOT EXISTS videos(
+                    id INTEGER PRIMARY KEY,
+                    name TEXT NOT NULL,
+                    time TEXT NOT NULL
     )
 ''')
 
 def list_videos():
-    pass
+    cursor.execute("SELECT * FROM videos")
+    for row in cursor.fetchall():
+        print(row)
 
-def add_videos():
-    pass
+def add_videos(name, time):
+    cursor.execute("INSERT INTO videos (name,time) VALUES (?, ?)",(name, time))
+    conn.commit()
 
-def update_videos():
-    pass
+def update_videos(videoID,new_name,new_time):
+    cursor.execute("UPDATE videos SET name = ?, time = ? WHERE id = ?",(new_name,new_time,videoID))
+    conn.commit()
 
-def delete_video():
-    pass
+
+def delete_video(videoID):
+    cursor.execute("DELETE FROM videos WHERE id = ?",(videoID,))
+    conn.commit()
 
 
 def main():

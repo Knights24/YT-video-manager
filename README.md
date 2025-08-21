@@ -17,14 +17,9 @@ A tool for managing your YouTube videos efficiently.
 ```bash
 git clone https://github.com/Knights24/YT-video-manager.git
 cd YT-video-manager
-npm install
+
 ```
 
-## Usage
-
-```bash
-npm start
-```
 
 ## Configuration
 
@@ -33,7 +28,3 @@ Update the `.env` file with your YouTube API credentials.
 ## Contributing
 
 Pull requests are welcome! For major changes, please open an issue first.
-
-## License
-
-[MIT](LICENSE)
